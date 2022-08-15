@@ -7,54 +7,72 @@ public class Calculadora {
     private char op;
 
     public Calculadora() {
-
     }
 
     public void captureInformations(String expression) {
-        /*char charValueA = expression.charAt(0);
-        char charValueB = expression.charAt(2);
 
-        this.valueA = Character.getNumericValue(charValueA);
-        this.valueB = Character.getNumericValue(charValueB);
-        this.op = expression.charAt(1);*/
+        String[] arrayValores = expression.split(" ");
+        try {
+            this.valueA = Integer.parseInt(arrayValores[0]);
+            this.valueB = Integer.parseInt((arrayValores[2]));
+            this.op = arrayValores[1].charAt(0);
+        } catch (NullPointerException e) {
+            e.getMessage();
+        }
     }
 
     public boolean testOperator() {
         return (this.op == '*' || this.op == '+' || this.op == '-' || this.op == '/');
     }
 
-    public int calculate() throws Exception {
+    private int calculate() throws Exception {
 
         if (!testOperator()) {
             throw new Exception("Caractere inválido para operação!");
         }
 
-        switch (this.op) {
-            case '+':
-                return this.valueA + this.valueB;
-            case '-':
-                return this.valueA - this.valueB;
-            case '*':
-                return this.valueA * this.valueB;
-            case '/':
-                return this.valueA / this.valueB;
+        try {
+            switch (this.op) {
+                case '+':
+                    return this.valueA + this.valueB;
+                case '-':
+                    return this.valueA - this.valueB;
+                case '*':
+                    return this.valueA * this.valueB;
+                case '/':
+                    return this.valueA / this.valueB;
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
         return 0;
     }
 
     public String showValue() throws Exception {
-        return ("O calculo de " + this.valueA + " " + this.op + " " + this.valueB + "É igual a = " + calculate());
+        return ("O calculo de " + this.valueA + " " + this.op + " " + this.valueB + " É igual  = " + calculate());
     }
 
-    public int getValueA() {return this.valueA;}
+    public int getValueA() {
+        return this.valueA;
+    }
 
-    public int getValueB() {return this.valueB;}
+    public int getValueB() {
+        return this.valueB;
+    }
 
-    public char getOp() {return this.op;}
+    public char getOp() {
+        return this.op;
+    }
 
-    public void setOp(char operation) {this.op = operation;}
+    public void setOp(char operation) {
+        this.op = operation;
+    }
 
-    public void setValueA(int valueA) {this.valueA = valueA;}
+    public void setValueA(int valueA) {
+        this.valueA = valueA;
+    }
 
-    public void setValueB(int valueB) {this.valueB = valueB;}
+    public void setValueB(int valueB) {
+        this.valueB = valueB;
+    }
 }

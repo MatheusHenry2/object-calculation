@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
         Calculadora calculo = new Calculadora();
-        calculo.captureInformations("3+6");
         try {
+            calculo.captureInformations("33 * 632");
             System.out.println(calculo.showValue());
         } catch (Exception e) {
             e.printStackTrace();
